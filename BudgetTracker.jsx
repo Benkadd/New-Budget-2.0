@@ -1,29 +1,28 @@
-
-import { useState } from 'react';
-import { Card, CardContent } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
+import { useState } from 'react'
+import { Card, CardContent } from '@/components/ui/card'
+import { Input } from '@/components/ui/input'
+import { Button } from '@/components/ui/button'
 
 export default function BudgetTracker() {
-  const mainIncome = 13000000;
-  const uberIncome = 2720000;
-  const [expenses, setExpenses] = useState([]);
-  const [uberMaintenance, setUberMaintenance] = useState(0);
-  const [item, setItem] = useState("");
-  const [amount, setAmount] = useState("");
+  const mainIncome = 13000000
+  const uberIncome = 2720000
+  const [expenses, setExpenses] = useState([])
+  const [uberMaintenance, setUberMaintenance] = useState(0)
+  const [item, setItem] = useState('')
+  const [amount, setAmount] = useState('')
 
   const addExpense = () => {
-    if (!item || !amount) return;
-    const newExpense = { item, amount: parseInt(amount) };
-    setExpenses([...expenses, newExpense]);
-    setItem("");
-    setAmount("");
-  };
+    if (!item || !amount) return
+    const newExpense = { item, amount: parseInt(amount) }
+    setExpenses([...expenses, newExpense])
+    setItem('')
+    setAmount('')
+  }
 
-  const totalPersonalExpenses = expenses.reduce((sum, exp) => sum + exp.amount, 0);
-  const totalExpenses = totalPersonalExpenses + uberMaintenance;
-  const totalIncome = mainIncome + uberIncome;
-  const balance = totalIncome - totalExpenses;
+  const totalPersonalExpenses = expenses.reduce((sum, exp) => sum + exp.amount, 0)
+  const totalExpenses = totalPersonalExpenses + uberMaintenance
+  const totalIncome = mainIncome + uberIncome
+  const balance = totalIncome - totalExpenses
 
   return (
     <div className="p-6 max-w-3xl mx-auto">
@@ -43,13 +42,13 @@ export default function BudgetTracker() {
         <Input
           placeholder="Expense item (e.g. Rent)"
           value={item}
-          onChange={(e) => setItem(e.target.value)}
+          onChange={e => setItem(e.target.value)}
         />
         <Input
           type="number"
           placeholder="Amount (UGX)"
           value={amount}
-          onChange={(e) => setAmount(e.target.value)}
+          onChange={e => setAmount(e.target.value)}
         />
         <Button onClick={addExpense}>Add</Button>
       </div>
@@ -75,10 +74,10 @@ export default function BudgetTracker() {
             type="number"
             placeholder="Total Monthly Uber Maintenance (UGX)"
             value={uberMaintenance}
-            onChange={(e) => setUberMaintenance(parseInt(e.target.value) || 0)}
+            onChange={e => setUberMaintenance(parseInt(e.target.value) || 0)}
           />
         </CardContent>
       </Card>
     </div>
-  );
+) 
 }
